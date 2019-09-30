@@ -1,5 +1,8 @@
-name: euc-jp
+name: euc
 description: EUC-JP Encoding and Decoding Library for Dart Language.
+
+author: "Delton Ding<dsh0416@gmail.com>"
+homepage: https://github.com/dsh0416/euc-jp
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -16,6 +19,6 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
-dependencies: []
+dependencies:
 
-dev_dependencies: []
+dev_dependencies:
