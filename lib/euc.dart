@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import './euc-table.dart';
 
 class EucJPDecoder extends Converter<List<int>, String> {
@@ -29,13 +30,30 @@ class EucJPDecoder extends Converter<List<int>, String> {
   }
 }
 
+class EucJPEncoder extends Converter<String, List<int>> {
+  @override
+  List<int> convert(String s) {
+    List<int> result = [];
+    for (int i = 0; i < s.length; i++) {
+      var bytes = utf8.encode(s[i]);
+      var value = 0;
+
+      for (var i = 0, length = bytes.length; i < length; i++) {
+        value += bytes[i] * pow(256, (bytes.length - i - 1));
+      }
+
+      result.addAll(UTF_TABLE[value] ?? []);
+    }
+    return result;
+  }
+}
+
 class EucJP extends Encoding {
   @override
   Converter<List<int>, String> get decoder => EucJPDecoder();
 
   @override
-  // TODO: implement encoder
-  Converter<String, List<int>> get encoder => null;
+  Converter<String, List<int>> get encoder => EucJPEncoder();
 
   @override
   String get name => 'EUC-JP';

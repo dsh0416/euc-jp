@@ -1,8 +1,9 @@
 import 'package:euc/euc.dart';
 
 main() {
-  var decoder = EucJP().decoder;
-  print(decoder.convert([
-    0xA4, 0xAA, 0xA4, 0xCF, 0xA4, 0xE8, 0xA4, 0xA6, 0xC0, 0xA4, 0xB3, 0xA6
+  print(EucJP().decoder.convert([
+    164, 170, 164, 207, 164, 232, 164, 166, 192, 164, 179, 166
   ]));
+
+  print(EucJP().encoder.convert("おはよう世界"));
 }
