@@ -1,2 +1,2 @@
-# euc-jp
-EUC-JP Encoding and Decoding Library for Dart Language
+# euc
+EUC-JP and Shift_JIS Encoding and Decoding Library for Dart Language
