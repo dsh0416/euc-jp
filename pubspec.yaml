@@ -1,5 +1,5 @@
 name: euc
-description: EUC-JP Encoding and Decoding Library for Dart Language.
+description: EUC-JP and Shift_JIS Encoding and Decoding Library for Dart Language.
 
 author: "Delton Ding<dsh0416@gmail.com>"
 homepage: https://github.com/dsh0416/euc-jp
