@@ -3,13 +3,13 @@ utf = {}
 
 # ASCII Compatible
 (0x00..0x7F).each do |i|
-  jis["0x#{i.to_s(16).ljust(2, '0')}"] = [i].pack('c*').encode("UTF-8", "Shift_JIS")
+  jis["0x#{i.to_s(16).rjust(2, '0')}"] = [i].pack('c*').encode("UTF-8", "Shift_JIS")
   utf[[i].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i]
 end
 
 # Half-width Hiragana
 (0xA1..0xDF).each do |i|
-  jis["0x#{i.to_s(16).ljust(2, '0')}"] = [i].pack('c*').encode("UTF-8", "Shift_JIS")
+  jis["0x#{i.to_s(16).rjust(2, '0')}"] = [i].pack('c*').encode("UTF-8", "Shift_JIS")
   utf[[i].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i]
 end
 
@@ -17,7 +17,7 @@ end
 (0x81..0x9F).each do |i|
   (0x40..0x7E).each do |j|
     begin
-      jis["0x#{i.to_s(16).ljust(2, '0')}#{j.to_s(16).ljust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
+      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
       utf[[i, j].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
@@ -26,7 +26,7 @@ end
 
   (0x80..0xFC).each do |j|
     begin
-      jis["0x#{i.to_s(16).ljust(2, '0')}#{j.to_s(16).ljust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
+      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
       utf[[i, j].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
@@ -38,7 +38,7 @@ end
 (0xE0..0xEF).each do |i|
   (0x40..0x7E).each do |j|
     begin
-      jis["0x#{i.to_s(16).ljust(2, '0')}#{j.to_s(16).ljust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
+      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
       utf[[i, j].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
@@ -47,7 +47,7 @@ end
 
   (0x80..0xFC).each do |j|
     begin
-      jis["0x#{i.to_s(16).ljust(2, '0')}#{j.to_s(16).ljust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
+      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
       utf[[i, j].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
