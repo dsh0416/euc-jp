@@ -1,7 +1,6 @@
 name: euc
 description: EUC-JP and Shift_JIS Encoding and Decoding Library for Dart Language.
 
-author: "Delton Ding<dsh0416@gmail.com>"
 homepage: https://github.com/dsh0416/euc-jp
 
 # The following defines the version and build number for your application.
@@ -14,7 +13,7 @@ homepage: https://github.com/dsh0416/euc-jp
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.3+5
+version: 1.0.4+6
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
