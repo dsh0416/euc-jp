@@ -2,6 +2,8 @@
 
 EUC-JP and Shift_JIS Encoding and Decoding Library for Dart Language
 
+[![Build Status](https://travis-ci.org/dsh0416/euc-jp.svg?branch=master)](https://travis-ci.org/dsh0416/euc-jp)
+
 ## Examples
 
 ```dart
