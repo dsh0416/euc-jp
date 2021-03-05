@@ -40,7 +40,7 @@ class JISEncoder extends Converter<String, List<int>> {
       var value = 0;
 
       for (var i = 0, length = bytes.length; i < length; i++) {
-        value += bytes[i] * pow(256, (bytes.length - i - 1));
+        value += bytes[i] * (pow(256, (bytes.length - i - 1)) as int);
       }
 
       result.addAll(UTF_TABLE[value] ?? []);
