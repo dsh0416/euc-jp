@@ -7,3 +7,4 @@
 - v1.0.3+5 Fix bug in ASCII table
 - v1.0.4+6 Remove warning in spec
 - v1.0.5+7 Add unit tests
+- v1.0.6+8 Fix some missing characters
