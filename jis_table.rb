@@ -17,7 +17,7 @@ end
 (0x81..0x9F).each do |i|
   (0x40..0x7E).each do |j|
     begin
-      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
+      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
       utf[[i, j].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
@@ -26,7 +26,7 @@ end
 
   (0x80..0xFC).each do |j|
     begin
-      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "Shift_JIS")
+      jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
       utf[[i, j].pack('c*').encode("UTF-8", "Shift_JIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
