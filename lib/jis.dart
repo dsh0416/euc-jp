@@ -22,6 +22,10 @@ class JISDecoder extends Converter<List<int>, String> {
         // JIS X 0208
         var c2 = input[++i];
         result.addAll(JIS_TABLE[(c1 << 8) + c2] ?? []);
+      } else if (c1 >= 0xfa && c1 <= 0xfc) {
+        // JIS X 0208
+        var c2 = input[++i];
+        result.addAll(JIS_TABLE[(c1 << 8) + c2] ?? []);
       } else {
         // Unknown
         result.addAll([]);
