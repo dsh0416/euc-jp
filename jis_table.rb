@@ -27,7 +27,8 @@ end
   (0x80..0xFC).each do |j|
     begin
       jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
-      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j]
+      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j] \
+        unless i == 0x87 && ((0x90 <= j && j <= 0x92) || (0x95 <= j && j <= 0x97) || (0x9A <= j && j <= 0x9C))
     rescue Encoding::UndefinedConversionError
       # Ignore
     end
@@ -38,7 +39,7 @@ end
   (0x40..0x7E).each do |j|
     begin
       jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
-      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j]
+      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j] unless 0xED <= i && i <= 0xEE
     rescue Encoding::UndefinedConversionError
       # Ignore
     end
@@ -47,7 +48,7 @@ end
   (0x80..0xFC).each do |j|
     begin
       jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
-      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j]
+      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j] unless 0xED <= i && i <= 0xEE
     rescue Encoding::UndefinedConversionError
       # Ignore
     end
@@ -58,6 +59,8 @@ end
   (0x40..0x7E).each do |j|
     begin
       jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
+      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j] \
+        unless i == 0xFA && (j == 0x54 || j == 0x5B)
     rescue Encoding::UndefinedConversionError
       # Ignore
     end
@@ -66,6 +69,7 @@ end
   (0x80..0xFC).each do |j|
     begin
       jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
+      utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j]
     rescue Encoding::UndefinedConversionError
       # Ignore
     end

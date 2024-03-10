@@ -83,6 +83,78 @@ main() {
           '￢∵≒≡∫√⊥∠∩∪');
     });
 
+    test('Windows-31J Symbols', () {
+      final cs = ShiftJIS();
+      expect(cs.decode([0x81, 0x5C]), equals('\u{2015}')); // ―
+      expect(cs.decode([0x81, 0x60]), equals('\u{FF5E}')); // ～
+      expect(cs.decode([0x81, 0x61]), equals('\u{2225}')); // ∥
+      expect(cs.decode([0x81, 0x7C]), equals('\u{FF0D}')); // －
+      expect(cs.decode([0x81, 0x91]), equals('\u{FFE0}')); // ￠
+      expect(cs.decode([0x81, 0x92]), equals('\u{FFE1}')); // ￡
+      expect(cs.decode([0x81, 0xCA]), equals('\u{FFE2}')); // ￢
+
+      expect(cs.encode('\u{FF02}'), equals([0xFA, 0x57])); // ＂
+      expect(cs.encode('\u{FF07}'), equals([0xFA, 0x56])); // ＇
+      expect(cs.encode('\u{FF0D}'), equals([0x81, 0x7C])); // －
+      expect(cs.encode('\u{FF5E}'), equals([0x81, 0x60])); // ～
+      expect(cs.encode('\u{FFE0}'), equals([0x81, 0x91])); // ￠
+      expect(cs.encode('\u{FFE1}'), equals([0x81, 0x92])); // ￡
+      expect(cs.encode('\u{FFE2}'), equals([0x81, 0xCA])); // ￢
+      expect(cs.encode('\u{FFE4}'), equals([0xFA, 0x55])); // ￤
+    });
+
+    test('Windows-31J Overlapping Symbols', () {
+      final cs = ShiftJIS();
+      final f = (u, List<List<int>> j) {
+        expect(cs.encode(u), equals(j.first));
+        for (final i in j) {
+          expect(cs.decode(i), equals(u));
+        }
+      };
+      f('\u{222A}', [
+        [0x81, 0xBE],
+        [0x87, 0x9C],
+      ]);
+      f('\u{2229}', [
+        [0x81, 0xBF],
+        [0x87, 0x9B],
+      ]);
+      f('\u{FFE2}', [
+        [0x81, 0xCA],
+        [0xEE, 0xF9],
+        [0xFA, 0x54],
+      ]);
+      f('\u{2220}', [
+        [0x81, 0xDA],
+        [0x87, 0x97],
+      ]);
+      f('\u{22A5}', [
+        [0x81, 0xDB],
+        [0x87, 0x96],
+      ]);
+      f('\u{2261}', [
+        [0x81, 0xDF],
+        [0x87, 0x91],
+      ]);
+      f('\u{2252}', [
+        [0x81, 0xE0],
+        [0x87, 0x90],
+      ]);
+      f('\u{221A}', [
+        [0x81, 0xE3],
+        [0x87, 0x95],
+      ]);
+      f('\u{2235}', [
+        [0x81, 0xE6],
+        [0x87, 0x9A],
+        [0xFA, 0x5B],
+      ]);
+      f('\u{222B}', [
+        [0x81, 0xE7],
+        [0x87, 0x92],
+      ]);
+    });
+
     test('.encoder.bind()', () async {
       final input = () async* {
         yield "おはよ";
