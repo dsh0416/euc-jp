@@ -60,7 +60,7 @@ end
     begin
       jis["0x#{i.to_s(16).rjust(2, '0')}#{j.to_s(16).rjust(2, '0')}"] = [i, j].pack('c*').encode("UTF-8", "SJIS")
       utf[[i, j].pack('c*').encode("UTF-8", "SJIS").bytes] = [i, j] \
-        unless i == 0xFA && (j == 0x54 || j == 0x5B)
+        unless i == 0xFA && ((0x4A <= j && j <= 0x54) || (0x58 <=j && j <= 0x5B))
     rescue Encoding::UndefinedConversionError
       # Ignore
     end

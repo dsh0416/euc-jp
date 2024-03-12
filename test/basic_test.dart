@@ -58,6 +58,50 @@ main() {
           equals('山﨑 敏樹'));
     });
 
+    test('Windows-31J Round Trip (IBM Kanji)', () {
+      final cs = ShiftJIS();
+      for (var c0 = 0xFA; c0 <= 0xFC; c0 += 1) {
+        for (var c1 = 0x40; c1 <= 0xFC; c1 += 1) {
+          if (c0 == 0xFA && (0x4A <= c1 && c1 <= 0x5B)) continue;
+          if (c1 == 0x7F) continue;
+          if (c0 == 0xFC && c1 == 0x4C) break;
+          expect(cs.encode(cs.decode([c0, c1])), [c0, c1]);
+        }
+      }
+    });
+
+    test('Windows-31J Non Round Trip (IBM Kanji)', () {
+      final cs = ShiftJIS();
+      expect(cs.encode(cs.decode([0xFA, 0x40])), [0xFA, 0x40]);
+      expect(cs.encode(cs.decode([0xFA, 0x41])), [0xFA, 0x41]);
+      expect(cs.encode(cs.decode([0xFA, 0x42])), [0xFA, 0x42]);
+      expect(cs.encode(cs.decode([0xFA, 0x43])), [0xFA, 0x43]);
+      expect(cs.encode(cs.decode([0xFA, 0x44])), [0xFA, 0x44]);
+      expect(cs.encode(cs.decode([0xFA, 0x45])), [0xFA, 0x45]);
+      expect(cs.encode(cs.decode([0xFA, 0x46])), [0xFA, 0x46]);
+      expect(cs.encode(cs.decode([0xFA, 0x47])), [0xFA, 0x47]);
+      expect(cs.encode(cs.decode([0xFA, 0x48])), [0xFA, 0x48]);
+      expect(cs.encode(cs.decode([0xFA, 0x49])), [0xFA, 0x49]);
+      expect(cs.encode(cs.decode([0xFA, 0x4A])), [0x87, 0x54]);
+      expect(cs.encode(cs.decode([0xFA, 0x4B])), [0x87, 0x55]);
+      expect(cs.encode(cs.decode([0xFA, 0x4C])), [0x87, 0x56]);
+      expect(cs.encode(cs.decode([0xFA, 0x4D])), [0x87, 0x57]);
+      expect(cs.encode(cs.decode([0xFA, 0x4E])), [0x87, 0x58]);
+      expect(cs.encode(cs.decode([0xFA, 0x4F])), [0x87, 0x59]);
+      expect(cs.encode(cs.decode([0xFA, 0x50])), [0x87, 0x5A]);
+      expect(cs.encode(cs.decode([0xFA, 0x51])), [0x87, 0x5B]);
+      expect(cs.encode(cs.decode([0xFA, 0x52])), [0x87, 0x5C]);
+      expect(cs.encode(cs.decode([0xFA, 0x53])), [0x87, 0x5D]);
+      expect(cs.encode(cs.decode([0xFA, 0x54])), [0x81, 0xCA]);
+      expect(cs.encode(cs.decode([0xFA, 0x55])), [0xFA, 0x55]);
+      expect(cs.encode(cs.decode([0xFA, 0x56])), [0xFA, 0x56]);
+      expect(cs.encode(cs.decode([0xFA, 0x57])), [0xFA, 0x57]);
+      expect(cs.encode(cs.decode([0xFA, 0x58])), [0x87, 0x8A]);
+      expect(cs.encode(cs.decode([0xFA, 0x59])), [0x87, 0x82]);
+      expect(cs.encode(cs.decode([0xFA, 0x5A])), [0x87, 0x84]);
+      expect(cs.encode(cs.decode([0xFA, 0x5B])), [0x81, 0xE6]);
+    });
+
     test('Windows-31J Round Trip', () {
       final f = (text) {
         final cs = ShiftJIS();
